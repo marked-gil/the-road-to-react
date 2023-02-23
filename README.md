@@ -29,3 +29,6 @@ function App() {
 }</pre>
 
 THe function of a component runs every time a component is displayed in the browser - on initial rendering of component, and whenever the component updates
+
+### **React JSX**
+* **JSX** (Javascript XML) - powerfully combines HTML & Javascript
