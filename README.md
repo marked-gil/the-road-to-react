@@ -66,4 +66,10 @@ THe function of a component runs every time a component is displayed in the brow
             "react-app"
         ]
     }
-    </pre>
+    </pre>  
+
+### Lists in React
+`map()` method - used to transform a list of items into JSX by returning JSX for each item. 
+* Every React element in a list should have a `key` assigned to it.
+* The `key` is an HTML attribute and should be a stable identifier.
+* As a last resort, you can use the `index` of the item in the list if the list does not change its order in any way.
