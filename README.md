@@ -73,3 +73,9 @@ THe function of a component runs every time a component is displayed in the brow
 * Every React element in a list should have a `key` assigned to it.
 * The `key` is an HTML attribute and should be a stable identifier.
 * As a last resort, you can use the `index` of the item in the list if the list does not change its order in any way.
+
+### **React Props** 
+Important about **Props**:  
+* It's not allowed to change them (they should be treated as an immutable data structure)
+* Only used to pass info down the component hierarchy.
+* Can only be passed from a parent to a child component & not vice versa.
