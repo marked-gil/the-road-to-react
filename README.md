@@ -31,4 +31,39 @@ function App() {
 THe function of a component runs every time a component is displayed in the browser - on initial rendering of component, and whenever the component updates
 
 ### **React JSX**
-* **JSX** (Javascript XML) - powerfully combines HTML & Javascript
+* **JSX** (Javascript XML) - powerfully combines HTML & Javascript; a syntax extension to Javascript.
+
+    These days, the underlying build tools can be configured to acknowledge JSX in a `.js` file.
+
+    Tools like Vite embrace the .jsx extension though, because it makes it more explicit for developers.
+
+### **Linting with ESLint**
+1. Install Vite's plugin to integrate ESLint  
+    > `npm install vite-plugin-eslint --save-dev`   
+2. Integrate the plugin in the project's configuration  
+    *vite.config.jsx*
+    <pre>
+    import { defineConfig } from 'vite';
+    import react from '@vitejs/plugin-react';
+    <b>import eslint from 'vite-plugin-eslint'</b>;
+    
+    // https://vitejs.dev/config/
+    export default defineConfig({
+        <b>plugins: [react(), eslint()]</b>,
+    })
+    </pre>
+3. Install ESLint dependency   
+    > `npm install eslint --save-dev`   
+4. Install one of ESLint's many standardized linting configurations for a React project 
+    > `npm install eslint-config-react-app --save-dev`  
+5. Create an EsLint configuration file to define our linting rules  
+    > `touch .eslintrc` 
+6. Tell ESLint to use the previously installed standardized set of rules from the eslint-config-react-app dependency (Although, it is possible to define your own rules in this file)   
+    *.eslintrc*
+    <pre>
+    {
+        "extends": [
+            "react-app"
+        ]
+    }
+    </pre>
