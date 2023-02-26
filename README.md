@@ -18,7 +18,7 @@ All project-specific commands are in the `package.json` under `scripts` property
 `npm run preview` - to run production-ready build on local machine for testing purposes (run after `npm run build`)
 
 ### **Meet React Component**
-**Rule of thumb:**  
+**Rule of Thumb:**  
 "If a variable does not need anything from within a component's body, then define it outside of the component which avoid re-defining it on every function call.
 <pre>const title = 'React';
 
@@ -104,3 +104,13 @@ Implicit vehicle to **communicate upwards** the component tree
 (When an event handler is passed as props from a parent component to its child component, it becomes a callback handler.)
 
 ### **Lifting State in React**
+* The process of moving state from one component to another.    
+* The **state** should always be there where all components which depend on the state can read (via *props*) or update (via *callback handler*) it.
+
+**Rule of Thumb:**  
+* "Always manage state at a component level where every component that's interested in it is one that is either manages the state (using information directly from *state*) or a component below the state managing component (using info from **props**)."
+
+* "If a component below needs to update the state, pass a **callback hanlder** down to it which allows this particular component to update the state above in the parent component."  
+
+* "If a component below needs to use the state (eg, displaying it), pass it down as **props**."
+
