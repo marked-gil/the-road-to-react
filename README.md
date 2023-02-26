@@ -68,7 +68,7 @@ THe function of a component runs every time a component is displayed in the brow
     }
     </pre>  
 
-### Lists in React
+### **Lists in React**
 `map()` method - used to transform a list of items into JSX by returning JSX for each item. 
 * Every React element in a list should have a `key` assigned to it.
 * The `key` is an HTML attribute and should be a stable identifier.
@@ -79,3 +79,28 @@ Important about **Props**:
 * It's not allowed to change them (they should be treated as an immutable data structure)
 * Only used to pass info down the component hierarchy.
 * Can only be passed from a parent to a child component & not vice versa.
+
+### **React State**
+**State**   
+* Used to change information over time
+* When it gets mutated, the component with the state & all child components will re-render.     
+
+**useState**    
+* Takes an *initial state* as an argument
+* Returns an array with 2 entries:  
+    * 1st entry - *current state*
+    * 2nd entry - *state updater* function (a function to update this state)    
+
+    <pre>
+    const [searchTerm, setSearchTerm] = React.useState('');
+    </pre>
+
+### **Callback Handlers**
+Implicit vehicle to **communicate upwards** the component tree  
+**Concept:**
+* We pass a *function* from a parent component to a child component via **props**;
+* We call the function in the child component, but have the actual implementation of the called function in the parent component.
+
+(When an event handler is passed as props from a parent component to its child component, it becomes a callback handler.)
+
+### **Lifting State in React**
