@@ -114,3 +114,18 @@ Implicit vehicle to **communicate upwards** the component tree
 
 * "If a component below needs to use the state (eg, displaying it), pass it down as **props**."
 
+### **React Controlled Components**
+Using controlled components is important because you want to enforce a predictable behavior.
+
+<pre>
+const Search = (props) => {
+    &lt;div&gt;
+        &lt;input id='search' type='text' 
+                onChange={props.onSearch} 
+                <b>value='{props.search}'</b> /&gt;
+    &lt;/div&gt;
+}
+</pre>
+
+* The **input field** is explicitly a **controlled element**
+* The **Search component** is implicitly a **controlled component**
