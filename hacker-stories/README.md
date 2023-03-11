@@ -129,3 +129,10 @@ const Search = (props) => {
 
 * The **input field** is explicitly a **controlled element**
 * The **Search component** is implicitly a **controlled component**
+
+### **Props Handling**
+**Rules of Thumb:**
+* Always use **object destructuring** for props in a function component's signature (because props are rarely used themselves).
+* Use **spread operator** when you want to pass all key/value pairs of an object to a child component in JSX.
+* Use the **rest operator** when you only want to split out certain properties from your props object.
+* Use **nested destructuring** when it improves readability.

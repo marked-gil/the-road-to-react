@@ -1,5 +1,17 @@
 import * as React from 'react'
 
+const useStorageState = (key, initialState) => {
+  const [value, setValue] = React.useState(
+    localStorage.getItem(key) || initialState
+  );
+
+  React.useEffect(() => {
+    localStorage.setItem(key, value);
+  }, [value, key]);
+
+  return [value, setValue];
+}
+
 
 const App = () => {
   const stories = [
@@ -21,20 +33,30 @@ const App = () => {
     },
   ]
 
-  const [searchTerm, setSearchTerm] = React.useState('');
-
+  const [searchTerm, setSearchTerm] = useStorageState('search', 'React');
 
   const handleSearch = (event) => {
-    setSearchTerm(event.target.value)
-  }
+    setSearchTerm(event.target.value);
+  };
 
-  const searchedStories = stories.filter(story => story.title.toLowerCase().includes(searchTerm.toLowerCase()))
+  const searchedStories = stories.filter(story => 
+    story.title.toLowerCase().includes(
+      searchTerm.toLowerCase()
+    )
+  )
 
   return (
     <div>
       <h1>My Hacker Stories</h1>
 
-      <Search search={searchTerm} onSearch={handleSearch} />
+      <InputWithLabel
+        id="search"
+        value={searchTerm}
+        isFocused
+        onInputChange={handleSearch}
+      >
+        <strong>Search:</strong>
+      </InputWithLabel>
 
       <hr />
 
@@ -44,37 +66,46 @@ const App = () => {
 }
     
 
-const List = (props) => (
+const List = ({list}) => (
     <ul>
-        {props.list.map((item) => 
+        {list.map((item) => 
             <Item key={item.objectID} item={item}/>
           )}
     </ul>
 )
 
-const Item = (props) => {
-  return (
-    <li>
-      <span>
-        <a href={props.item.url}>{props.item.title}</a>
-      </span>
-      <span> {props.item.author} </span>
-      <span> {props.item.num_comments}</span>
-      <span> {props.item.points} </span>
-    </li>
-  )
-}
 
-const Search = (props) => {
+const Item = ({item}) => (
+  <li>
+    <span>
+      <a href={item.url}>{item.title}</a>
+    </span>
+    <span> {item.author} </span>
+    <span> {item.num_comments}</span>
+    <span> {item.points} </span>
+  </li>
+)
 
-  return (
-    <div>
-      <label htmlFor="search">Search: </label>
-      <input id="search" type="text" onChange={props.onSearch} value={props.search}/>
-    </div>
-  )
-}
-    
+const InputWithLabel = ({
+  id,
+  value,
+  type='text',
+  onInputChange,
+  isFocused,
+  children
+}) => (
+  <>
+    <label htmlFor={id}>{children}</label>
+    &nbsp;
+    <input
+      id={id}
+      type={type}
+      value={value}
+      autoFocus={isFocused}
+      onChange={onInputChange}
+    />
+  </>
+)
     
 
 export default App;
